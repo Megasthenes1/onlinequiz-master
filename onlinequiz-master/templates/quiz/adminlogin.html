@@ -3,13 +3,21 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <title></title>
     <style media="screen">
       body {
     margin: 0;
     padding: 0;
+    padding-top: 80px;
     font-family: sans-serif;
-    background: linear-gradient(to right, #b92b27, #1565c0)
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
 }
 
 .box {
@@ -18,39 +26,46 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    background: #191919;
-
+    background: #2d2d2d;
+    border: 1px solid #3a3a3a;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
     text-align: center;
     transition: 0.25s;
-    margin-top: 100px
+    transform: translate(-50%, -50%);
 }
 
 .box input[type="text"],
 .box input[type="password"] {
     border: 0;
-    background: none;
+    background: #1a1a1a;
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #3498db;
+    border: 2px solid #4a90e2;
     padding: 10px 10px;
     width: 250px;
     outline: none;
-    color: white;
+    color: #e0e0e0;
     border-radius: 24px;
     transition: 0.25s
 }
 
 .box h1 {
-    color: white;
+    color: #e0e0e0;
     text-transform: uppercase;
     font-weight: 500
+}
+
+.box p {
+    color: #b0b0b0;
 }
 
 .box input[type="text"]:focus,
 .box input[type="password"]:focus {
     width: 300px;
-    border-color: #2ecc71
+    border-color: #4a90e2;
+    background: #1a1a1a;
 }
 
 .box input[type="submit"] {
@@ -59,17 +74,18 @@
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #2ecc71;
+    border: 2px solid #4a90e2;
     padding: 14px 40px;
     outline: none;
-    color: white;
+    color: #e0e0e0;
     border-radius: 24px;
     transition: 0.25s;
     cursor: pointer
 }
 
 .box input[type="submit"]:hover {
-    background: #2ecc71
+    background: #4a90e2;
+    color: white;
 }
 
 
@@ -77,28 +93,18 @@
   </head>
   <body>
     {% include "quiz/navbar.html" %}
-    <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <form class="box" method="post">
-                    {% csrf_token %}
-                    <h1>Admin Login</h1>
-                    <p class="text-muted"> Please enter your login and password!</p>
+    <div class="container" style="position: relative; min-height: calc(100vh - 80px);">
+        <form class="box" method="post">
+            {% csrf_token %}
+            <h1>Admin Login</h1>
+            <p class="text-muted"> Please enter your login and password!</p>
 
-                     {% render_field form.username class="form-control" placeholder="Username" %}
-                     {% render_field form.password class="form-control" placeholder="Password" %}
+             {% render_field form.username class="form-control" placeholder="Username" %}
+             {% render_field form.password class="form-control" placeholder="Password" %}
 
-                     <input type="submit" name="" value="Login">
+             <input type="submit" name="" value="Login">
 
-                </form>
-            </div>
-        </div>
+        </form>
     </div>
-</div>
-<br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br>
-{% include "quiz/footer.html" %}
   </body>
 </html>

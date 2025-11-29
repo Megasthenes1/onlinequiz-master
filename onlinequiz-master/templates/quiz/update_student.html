@@ -3,41 +3,67 @@
 {% block content %}
 <head>
   <style media="screen">
-    input[type=text], select,input[type=number] ,input[type=password], textarea{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+    .card {
+      background-color: #2d2d2d;
+      border: 1px solid #3a3a3a;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      margin: 20px auto;
+      max-width: 800px;
+    }
+    
+    h3 {
+      color: #e0e0e0;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    input[type=text], select, input[type=number], input[type=password], textarea, .form-control {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #3a3a3a;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+    }
+    
+    input[type=text]:focus, select:focus, input[type=number]:focus, input[type=password]:focus, textarea:focus, .form-control:focus {
+      border-color: #4a90e2;
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+      outline: none;
+    }
+    
+    label {
+      color: #e0e0e0;
+      margin-top: 15px;
+    }
 
-  input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+    input[type=submit] {
+      width: 100%;
+      background-color: #4a90e2;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
-
-
+    input[type=submit]:hover {
+      background-color: #357abd;
+    }
   </style>
-
-
 </head>
 
 <br><br>
-<h3 style="text-align:center;">UPDATE STUDENT</h3>
-<div>
-  <form method="post" autocomplete="off" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
+<div class="container">
+  <div class="card">
+    <h3>UPDATE STUDENT</h3>
+    <form method="post" autocomplete="off" enctype="multipart/form-data">
       {% csrf_token %}
         <label for="first_name">First Name</label>
         {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
@@ -53,13 +79,11 @@
           <label for="password">Password</label>
         {% render_field userForm.password class="form-control" placeholder="Password" %} <br><br>
         <label for="profile_pic">Profile Picture</label>
-          {% render_field studentForm.profile_pic class="form-control" placeholder="Profile Picture" %}
-<br><br>
-    <input type="submit" value="Update">
-  </form>
+        {% render_field studentForm.profile_pic class="form-control" placeholder="Profile Picture" %}
+        <br><br>
+        <input type="submit" value="Update">
+    </form>
+  </div>
 </div>
-
-
-
-<br><br><br><br><br><br><br><br>
+<br><br><br>
 {% endblock content %}

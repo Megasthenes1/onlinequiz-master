@@ -1,33 +1,290 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en" dir="ltr">
-
-<style>
-  .jumbotron{
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Online Quiz - Home</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+      padding-top: 0px;
+      margin: 0px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+    }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    #section-jumbotron {
+      height: calc(100vh - 80px);
+      min-height: calc(100vh - 80px);
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: white;
+      margin-top: 80px;
+      margin-bottom: 0px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      padding-left: 20px;
+      padding-right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .navbar {
+      margin-bottom: 0px;
+      min-height: 80px;
+      padding: 20px 0;
+    }
+    
+    .bs-example {
     margin-bottom: 0px;
   }
+    
+    .navbar.fixed-top {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
+    }
+    
+    .jumbotron-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .jumbotron h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .jumbotron .display-4 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+    
+    .jumbotron .lead {
+      font-size: 1.25rem;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    
+    .cta-buttons {
+      margin-top: 40px;
+    }
+    
+    .cta-buttons .btn {
+      margin: 10px;
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .cta-buttons .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    
+    .btn-info {
+      background-color: #4a90e2;
+      border-color: #4a90e2;
+      color: white;
+    }
+    
+    .btn-info:hover {
+      background-color: #357abd;
+      border-color: #357abd;
+      color: white;
+    }
+    
+    .btn-outline-light {
+      border: 2px solid #4a90e2;
+      color: #4a90e2;
+      background-color: transparent;
+    }
+    
+    .btn-outline-light:hover {
+      background-color: #4a90e2;
+      color: white;
+      border-color: #4a90e2;
+    }
+    
+    .features-section {
+      padding: 60px 0;
+      background-color: #1a1a1a;
+    }
+    
+    .features-section .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .features-section .col-md-6 {
+      display: flex;
+    }
+    
+    .feature-card {
+      text-align: center;
+      padding: 30px;
+      margin-bottom: 30px;
+      background: #2d2d2d;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      border: 1px solid #3a3a3a;
+      transition: transform 0.3s ease;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 350px;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(74, 144, 226, 0.3);
+      border-color: #4a90e2;
+    }
+    
+    .feature-card i {
+      font-size: 3rem;
+      color: #4a90e2;
+      margin-bottom: 20px;
+      text-align: center;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .feature-card > *:first-child:not(h3) {
+      margin-top: 0;
+    }
+    
+    .feature-card h3 {
+      color: #e0e0e0;
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-align: center;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .feature-card p {
+      color: #b0b0b0;
+      line-height: 1.6;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 0;
+    }
+    
+    .feature-card .btn {
+      text-align: center;
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      font-weight: 500;
+      margin-top: auto;
+    }
+    
+    @media (max-width: 768px) {
+      .jumbotron h1 {
+        font-size: 2.5rem;
+      }
+      
+      .jumbotron .display-4 {
+        font-size: 1.5rem;
+      }
+      
+      .jumbotron .lead {
+        font-size: 1rem;
+      }
+      
+      .cta-buttons .btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
 </style>
+</head>
 <body>
   {% include "quiz/navbar.html" %}
-<br>
-<section id="section-jumbotron" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center">
-  <div class="container text-center">
-    <h1 class="display-1 text-info">Let's Quiz</h1>
+  
+  <div class="main-content">
+    <section id="section-jumbotron" class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="jumbotron-content text-center">
+          <h1 class="display-1">Let's Quiz</h1>
     <p class="display-4 d-none d-sm-block">Test your skills and become a master.</p>
     <p class="lead">We organize quizzes on various topics.</p>
-
-    
-
     <p class="lead">Sign up if you haven't already and get access to millions of quizzes on the topic of your interest.</p>
-    <p><strong> Start Your Journey Here:</strong></p>
-    <a href="/student/studentsignup" class="btn btn-lg btn-info" style="padding-right: 35px;"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+          
+          <div class="cta-buttons">
+            <a href="/student/studentsignup" class="btn btn-lg btn-info">
+              <i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up as Student
+            </a>
+            <a href="/student/studentclick" class="btn btn-lg btn-outline-light">
+              <i class="fa fa-sign-in" aria-hidden="true"></i> Student Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
     
-    
+    <section class="features-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="feature-card">
+              <div style="height: 3rem; margin-bottom: 20px;"></div>
+              <h3>For Students</h3>
+              <p>Take unlimited quizzes, test your knowledge, and track your progress. No approval needed - sign up and start learning!</p>
+              <a href="/student/studentclick" class="btn btn-info mt-3">Get Started</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="feature-card">
+              <i class="fa fa-chalkboard-teacher"></i>
+              <h3>For Teachers</h3>
+              <p>Create courses, add questions, and manage exams. Apply to become a teacher and help students learn!</p>
+              <a href="/teacher/teacherclick" class="btn btn-info mt-3">Apply Now</a>
+            </div>
+          </div>
+        </div>
   </div>  
 </section>
-  {% include "quiz/footer.html" %}
-
-
+  </div>
 </body>
-
 </html>

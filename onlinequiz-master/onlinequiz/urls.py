@@ -2,6 +2,7 @@ from django.urls import path,include
 from django.contrib import admin
 from quiz import views
 from django.contrib.auth.views import LogoutView,LoginView
+from django.views.generic import RedirectView
 urlpatterns = [
    
     path('admin/', admin.site.urls),
@@ -12,8 +13,7 @@ urlpatterns = [
 
     path('',views.home_view,name=''),
     path('logout', LogoutView.as_view(template_name='quiz/logout.html'),name='logout'),
-    path('aboutus', views.aboutus_view),
-    path('contactus', views.contactus_view),
+    path('aboutus', RedirectView.as_view(url='/', permanent=True), name='aboutus'),
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
 
 
@@ -26,7 +26,6 @@ urlpatterns = [
     path('update-teacher/<int:pk>', views.update_teacher_view,name='update-teacher'),
     path('delete-teacher/<int:pk>', views.delete_teacher_view,name='delete-teacher'),
     path('admin-view-pending-teacher', views.admin_view_pending_teacher_view,name='admin-view-pending-teacher'),
-    path('admin-view-teacher-salary', views.admin_view_teacher_salary_view,name='admin-view-teacher-salary'),
     path('approve-teacher/<int:pk>', views.approve_teacher_view,name='approve-teacher'),
     path('reject-teacher/<int:pk>', views.reject_teacher_view,name='reject-teacher'),
 

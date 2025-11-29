@@ -50,6 +50,9 @@
   
       .card .card-block {
         padding: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
   
       .order-card i {
@@ -96,9 +99,9 @@
       <div class="col-md-4 col-xl-4">
         <div class="card bg-c-yellow order-card">
           <div class="card-block">
-            <h6 class="m-b-20"><a href="admin-view-teacher-salary" style="text-decoration: none;color:white;">Total Teacher Salary</a></h6>
-            <h2 class="text-right"><i class="fas fa-rupee-sign f-left"></i><span>{{salary}}</span></h2>
-            
+            <h6 class="m-b-20" style="color:white;">Manage Teacher Profiles</h6>
+            <p style="color:#f7f7f7; margin-bottom:15px;">Review details, update information and take quick actions for any teacher.</p>
+            <a class="btn btn-light btn-sm" href="admin-view-teacher">Go to Teacher List</a>
           </div>
         </div>
       </div>

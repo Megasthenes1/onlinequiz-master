@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect,reverse
 from . import forms,models
-from django.db.models import Sum
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required,user_passes_test
@@ -64,7 +63,6 @@ def admin_teacher_view(request):
     dict={
     'total_teacher':TMODEL.Teacher.objects.all().filter(status=True).count(),
     'pending_teacher':TMODEL.Teacher.objects.all().filter(status=False).count(),
-    'salary':TMODEL.Teacher.objects.all().filter(status=True).aggregate(Sum('salary'))['salary__sum'],
     }
     return render(request,'quiz/admin_teacher.html',context=dict)
 
@@ -113,18 +111,10 @@ def admin_view_pending_teacher_view(request):
 
 @login_required(login_url='adminlogin')
 def approve_teacher_view(request,pk):
-    teacherSalary=forms.TeacherSalaryForm()
-    if request.method=='POST':
-        teacherSalary=forms.TeacherSalaryForm(request.POST)
-        if teacherSalary.is_valid():
-            teacher=TMODEL.Teacher.objects.get(id=pk)
-            teacher.salary=teacherSalary.cleaned_data['salary']
-            teacher.status=True
-            teacher.save()
-        else:
-            print("form is invalid")
-        return HttpResponseRedirect('/admin-view-pending-teacher')
-    return render(request,'quiz/salary_form.html',{'teacherSalary':teacherSalary})
+    teacher=TMODEL.Teacher.objects.get(id=pk)
+    teacher.status=True
+    teacher.save()
+    return HttpResponseRedirect('/admin-view-pending-teacher')
 
 @login_required(login_url='adminlogin')
 def reject_teacher_view(request,pk):
@@ -133,13 +123,6 @@ def reject_teacher_view(request,pk):
     user.delete()
     teacher.delete()
     return HttpResponseRedirect('/admin-view-pending-teacher')
-
-@login_required(login_url='adminlogin')
-def admin_view_teacher_salary_view(request):
-    teachers= TMODEL.Teacher.objects.all().filter(status=True)
-    return render(request,'quiz/admin_view_teacher_salary.html',{'teachers':teachers})
-
-
 
 
 @login_required(login_url='adminlogin')
@@ -278,19 +261,5 @@ def admin_check_marks_view(request,pk):
 
 
 
-def aboutus_view(request):
-    return render(request,'quiz/aboutus.html')
-
-def contactus_view(request):
-    sub = forms.ContactusForm()
-    if request.method == 'POST':
-        sub = forms.ContactusForm(request.POST)
-        if sub.is_valid():
-            email = sub.cleaned_data['Email']
-            name=sub.cleaned_data['Name']
-            message = sub.cleaned_data['Message']
-            send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
-            return render(request, 'quiz/contactussuccess.html')
-    return render(request, 'quiz/contactus.html', {'form':sub})
 
 

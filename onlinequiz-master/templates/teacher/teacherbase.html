@@ -11,18 +11,32 @@
       text-decoration: none;
     }
 
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      font-family: "Gill Sans", sans-serif;;
+      font-family: "Gill Sans", sans-serif;
+      background-color: #1a1a1a;
+      color: #e0e0e0;
     }
 
     header {
       position: fixed;
-      background: #22242A;
-      padding: 20px;
+      background: #000000;
+      padding: 0;
       width: 100%;
       z-index: 1;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .left_area {
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
     }
 
     .left_area h3 {
@@ -34,38 +48,43 @@
     }
 
     .left_area span {
-      color: #19B3D3;
+      color: #4a90e2;
+    }
+
+    .right_area {
+      display: flex;
+      align-items: center;
+      padding-right: 40px;
     }
 
     .logout_btn {
-      padding: 5px;
-      background: #19B3D3;
+      padding: 10px 20px;
+      background: #4a90e2;
       text-decoration: none;
-      float: right;
-      margin-top: -30px;
-      margin-right: 40px;
-      border-radius: 2px;
+      border-radius: 5px;
       font-size: 15px;
       font-weight: 600;
       color: #fff;
       transition: 0.5s;
-
+      display: inline-block;
     }
 
     .logout_btn:hover {
-      background: #0B87A6;
+      background: #357abd;
     }
 
     .sidebar {
-      background: #2f323a;
+      background: #2d2d2d;
       margin-top: 70px;
       padding-top: 30px;
       position: fixed;
       left: 0;
       width: 250px;
-      height: 100%;
+      height: calc(100vh - 70px);
       transition: 0.5s;
       transition-property: left;
+      border-right: 1px solid #3a3a3a;
+      overflow-y: auto;
     }
 
     .sidebar .profile_image {
@@ -94,7 +113,7 @@
     }
 
     .sidebar a:hover {
-      background: #19B3D3;
+      background: #4a90e2;
     }
 
     .sidebar i {
@@ -106,15 +125,15 @@
       color: #fff;
       position: fixed;
       cursor: pointer;
-      left: 300px;
+      left: 250px;
+      top: 25px;
       font-size: 20px;
-      margin: 5px 0;
       transition: 0.5s;
       transition-property: color;
     }
 
     label #sidebar_btn:hover {
-      color: #19B3D3;
+      color: #4a90e2;
     }
 
     #check:checked~.sidebar {
@@ -131,13 +150,48 @@
       width: 80px;
     }
 
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
     .content {
       margin-left: 250px;
-      background: url(background.png) no-repeat;
-      background-position: center;
-      background-size: cover;
-      height: 100vh;
+      background-color: #1a1a1a;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: calc(100vh - 70px);
       transition: 0.5s;
+      margin-top: 70px;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      position: relative;
+      flex: 1;
+    }
+    
+    .content-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 20px 0 20px;
+      min-height: calc(100vh - 70px - 40px);
+    }
+    
+    .content-main {
+      flex: 1;
+      display: block;
+      min-height: 0;
+      padding-bottom: 20px;
+    }
+
+    footer {
+      margin-top: auto;
+      flex-shrink: 0;
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      margin-right: -20px;
     }
 
     #check:checked~.content {
@@ -146,6 +200,77 @@
 
     #check {
       display: none;
+    }
+    
+    /* Dark theme for common elements */
+    .card, .table, table {
+      background-color: #2d2d2d;
+      color: #e0e0e0;
+      border: 1px solid #3a3a3a;
+    }
+    
+    .card-header {
+      background-color: #1a1a1a;
+      border-bottom: 1px solid #3a3a3a;
+      color: #e0e0e0;
+    }
+    
+    .table thead th, table thead th {
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+      border-color: #3a3a3a;
+    }
+    
+    .table tbody td, table tbody td {
+      border-color: #3a3a3a;
+      color: #b0b0b0;
+    }
+    
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: #252525;
+    }
+    
+    .btn-primary, .btn-info {
+      background-color: #4a90e2;
+      border-color: #4a90e2;
+      color: white;
+    }
+    
+    .btn-primary:hover, .btn-info:hover {
+      background-color: #357abd;
+      border-color: #357abd;
+    }
+    
+    .form-control, input, select, textarea {
+      background-color: #1a1a1a;
+      border-color: #3a3a3a;
+      color: #e0e0e0;
+    }
+    
+    .form-control:focus, input:focus, select:focus, textarea:focus {
+      background-color: #1a1a1a;
+      border-color: #4a90e2;
+      color: #e0e0e0;
+    }
+    
+    .text-muted {
+      color: #b0b0b0 !important;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: #e0e0e0;
+    }
+    
+    p, label {
+      color: #b0b0b0;
+    }
+    
+    a {
+      color: #4a90e2;
+    }
+    
+    a:hover {
+      color: #357abd;
     }
   </style>
 
@@ -161,7 +286,7 @@
   <!--header area start-->
   <header>
     <label for="check">
-      <i style="left: 200px;margin-top: 17px;"class="fas fa-bars" id="sidebar_btn"></i>
+      <i class="fas fa-bars" id="sidebar_btn"></i>
     </label>
     <div class="left_area">
       <h3>Online Quiz</h3>
@@ -190,14 +315,15 @@
 
   <!--content start-->
   <div class="content">
-    <br><br><br><br><br>
-    {% block content %}
+    <div class="content-wrapper">
+      <div class="content-main">
+        <br><br><br><br><br>
+        {% block content %}
 
-    {% endblock content %}
-
-
-    <br><br><br>
-    {% include "quiz/footer.html" %}
+        {% endblock content %}
+        <br><br><br>
+      </div>
+    </div>
   </div>
   <!--content end-->
 </body>
